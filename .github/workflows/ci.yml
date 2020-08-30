@@ -1,0 +1,78 @@
+name: Continuous Integration
+
+on:
+  push:
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    paths-ignore:
+      - "docs/**"
+      - "**.md"
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  Configuration: Release
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+
+      - name: Display .NET Info
+        run: dotnet --info
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Run nbgv
+        run: echo "::set-env name=VERSION::$(dotnet nbgv get-version -v NuGetPackageVersion)"
+
+      - name: Display version
+        run: echo ${{ env.VERSION }}
+
+      - name: Build
+        shell: bash
+        run: dotnet build -t:build,pack --no-restore -m  -bl:obj/logs/build-${{ matrix.os }}.binlog -p:PackageReleaseNotes="$(sed 's/,/%2c/g' .github/releases/v${{ env.VERSION }}.md)"
+
+      - name: Test
+        run: dotnet test --no-build
+
+      - name: Upload nugets
+        if: github.event_name == 'push' && matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v1
+        with:
+          name: nugets
+          path: bin/Packages/${{ env.Configuration }}
+
+      - name: Upload logs
+        uses: actions/upload-artifact@v1
+        with:
+          name: logs-${{ matrix.os }}
+          path: obj/logs/
+
+      - name: Deploy to Github Packages
+        if: matrix.os == 'windows-latest' && github.event_name == 'pull_request'
+        run: dotnet gpr push bin/Packages/${{ env.Configuration }}/*.nupkg -k ${{ secrets.GH_TOKEN }}
+
+      - name: Deploy to NuGet
+        if: matrix.os == 'windows-latest' && github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/release/*')
+        shell: bash
+        run: for file in $(ls bin/Packages/${{ env.Configuration }}/*.nupkg); do dotnet nuget push $file -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json --skip-duplicate; done
+
+      - uses: ncipollo/release-action@v1
+        if: matrix.os == 'windows-latest' && github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/release/*')
+        with:
+          artifacts: "bin/Packages/${{ env.Configuration}}/*.nupkg,bin/Packages/${{ env.Configuration}}/*.snupkg"
+          bodyFile: ".github/releases/v${{ env.VERSION }}.md"
+          tag: v${{ env.VERSION }}
+          commit: ${{ env.GITHUB_SHA }}
+          token: ${{ secrets.GH_TOKEN }}

@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Cythral.CloudFormation.BuildTasks</AssemblyName>
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -15,6 +16,7 @@
     <PackageReference Include="AWSSDK.S3" Version="3.5.0" />
     <PackageReference Include="Microsoft.Build.Framework" Version="16.3.0" />
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.3.0" />
+    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
     <PackageReference Include="YamlDotNet" Version="8.1.2" />
   </ItemGroup>
 
