@@ -1,0 +1,49 @@
+<Project>
+    <PropertyGroup>
+        <Authors>Talen Fisher</Authors>
+        <Company>Cythral LLC</Company>
+        <Copyright>© Copyright 2020 Cythral LLC</Copyright>
+        <PackageProjectUrl>https://github.com/cythral/cfn-build-tasks</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/cythral/cfn-build-tasks</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageTags>AWS Amazon Cloud CloudFormation MSBuild</PackageTags>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Configuration Condition="$(Configuration) == ''">Debug</Configuration>
+        <Nullable>enable</Nullable>
+        <LangVersion>8.0</LangVersion>
+        <CythralCodeGenerationRoslynVersion>0.9.1</CythralCodeGenerationRoslynVersion>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <SkipDefaultEditorConfigAsAdditionalFile>true</SkipDefaultEditorConfigAsAdditionalFile>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+        <RestoreLockedMode>true</RestoreLockedMode>
+        <OutputPath>$(MSBuildThisFileDirectory)bin\$(MSBuildProjectName)\$(Configuration)</OutputPath>
+        <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+        <PackageOutputPath>$(MSBuildThisFileDirectory)bin\Packages\$(Configuration)</PackageOutputPath>
+        <RestorePackagesPath>$(MSBuildThisFileDirectory).nuget</RestorePackagesPath>
+        <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+        <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="$(MSBuildThisFileDirectory)LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
+    </ItemGroup>
+
+    <ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)\.editorconfig')" >
+        <AdditionalFiles Include="$(MSBuildThisFileDirectory)\.editorconfig" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Nerdbank.GitVersioning" Version="3.2.31" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeStyle" Version="3.8.0-1.20330.5" PrivateAssets="all" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+<Project>
+    <PropertyGroup>
+        <CloudFormationBuildTasksLocation Condition="$(CloudFormationBuildTasksLocation) == ''">
+            $(MSBuildThisFileDirectory)..\tools\any\Cythral.CloudFormation.BuildTasks.dll
+        </CloudFormationBuildTasksLocation>
+    </PropertyGroup>
+
+    <UsingTask TaskName="Cythral.CloudFormation.BuildTasks.UpdateCodeLocation" AssemblyFile="$(CloudFormationBuildTasksLocation)" />
+    <UsingTask TaskName="Cythral.CloudFormation.BuildTasks.Deploy" AssemblyFile="$(CloudFormationBuildTasksLocation)" />
+</Project>
