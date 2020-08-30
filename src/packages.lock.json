@@ -78,7 +78,7 @@
       },
       "System.Runtime.Loader": {
         "type": "Direct",
-        "requested": "[*, )",
+        "requested": "[4.3.0, )",
         "resolved": "4.3.0",
         "contentHash": "DHMaRn8D8YCK2GG2pw+UzNxn/OHVfaWx7OTLBD/hPegHZZgcZh3H6seWegrC4BYwsfuGrywIuT+MQs+rPqRLTQ==",
         "dependencies": {
