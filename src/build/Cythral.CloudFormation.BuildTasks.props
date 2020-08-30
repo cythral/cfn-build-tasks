@@ -7,4 +7,5 @@
 
     <UsingTask TaskName="Cythral.CloudFormation.BuildTasks.UpdateCodeLocation" AssemblyFile="$(CloudFormationBuildTasksLocation)" />
     <UsingTask TaskName="Cythral.CloudFormation.BuildTasks.Deploy" AssemblyFile="$(CloudFormationBuildTasksLocation)" />
+    <UsingTask TaskName="Cythral.CloudFormation.BuildTasks.PackageTemplate" AssemblyFile="$(CloudFormationBuildTasksLocation)" />
 </Project>

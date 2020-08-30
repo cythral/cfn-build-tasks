@@ -8,14 +8,11 @@ using System.Threading.Tasks;
 
 using Amazon.CloudFormation;
 using Amazon.CloudFormation.Model;
-using Amazon.S3;
 
 using Cythral.CloudFormation.BuildTasks.Converters;
 using Cythral.CloudFormation.BuildTasks.Models;
 
 using Microsoft.Build.Framework;
-
-using YamlDotNet.RepresentationModel;
 
 using Task = System.Threading.Tasks.Task;
 
@@ -58,27 +55,10 @@ namespace Cythral.CloudFormation.BuildTasks
         private async Task Run()
         {
             var template = await GetTemplateFileContents();
-
-            if (Package)
-            {
-                var templateReader = new StringReader(template);
-                var yamlStream = new YamlStream();
-
-                var s3Client = new AmazonS3Client();
-                var uploader = new S3Uploader(s3Client, PackageBucket);
-
-                var templateDirectory = Path.GetDirectoryName(TemplateFile);
-                var packager = new TemplatePackager(templateDirectory!, PackageBucket, templateReader, yamlStream, uploader);
-
-                var packagedFile = await packager.Package();
-                template = packagedFile;
-            }
-
             var config = await GetConfigFileContents();
             var stackExists = await StackExists();
 
             string status;
-
             try
             {
                 if (!stackExists)
@@ -152,6 +132,17 @@ namespace Cythral.CloudFormation.BuildTasks
 
         private async Task<string> GetTemplateFileContents()
         {
+            if (Package)
+            {
+                var packageTask = new PackageTemplate
+                {
+                    TemplateFile = TemplateFile,
+                    PackageBucket = PackageBucket,
+                };
+
+                return await packageTask.Package();
+            }
+
             return await File.ReadAllTextAsync(TemplateFile);
         }
 
