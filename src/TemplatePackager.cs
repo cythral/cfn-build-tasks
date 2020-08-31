@@ -114,6 +114,9 @@ namespace Cythral.CloudFormation.BuildTasks
                 ZipFile.CreateFromDirectory(directoryToZip, zipFileName);
 
                 using var zipFile = File.Open(zipFileName, FileMode.Open, FileAccess.ReadWrite);
+
+                Console.WriteLine(zipFile.CanSeek);
+
                 using var zipArchive = new ZipArchive(zipFile, ZipArchiveMode.Update);
 
                 foreach (var entry in zipArchive.Entries)
