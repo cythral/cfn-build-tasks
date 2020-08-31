@@ -42,7 +42,9 @@ namespace Cythral.CloudFormation.BuildTasks
 
         public string ConfigFile { get; set; } = "";
 
-        public string Capabilities { get; set; }
+        public string Capabilities { get; set; } = "";
+
+        public string? RoleArn { get; set; }
 
         public IAmazonCloudFormation Client { get; set; } = new AmazonCloudFormationClient();
 
@@ -63,7 +65,7 @@ namespace Cythral.CloudFormation.BuildTasks
             {
                 if (!stackExists)
                 {
-                    await Client.CreateStackAsync(new CreateStackRequest
+                    var request = new CreateStackRequest
                     {
                         StackName = StackName,
                         Capabilities = Capabilities.Split(";").ToList(),
@@ -71,11 +73,18 @@ namespace Cythral.CloudFormation.BuildTasks
                         StackPolicyBody = config.StackPolicy?.ToString(),
                         Parameters = config.Parameters,
                         Tags = config.Tags
-                    });
+                    };
+
+                    if (RoleArn != null)
+                    {
+                        request.RoleARN = RoleArn;
+                    }
+
+                    await Client.CreateStackAsync(request);
                 }
                 else
                 {
-                    await Client.UpdateStackAsync(new UpdateStackRequest
+                    var request = new UpdateStackRequest
                     {
                         StackName = StackName,
                         Capabilities = Capabilities.Split(";").ToList(),
@@ -83,7 +92,14 @@ namespace Cythral.CloudFormation.BuildTasks
                         StackPolicyBody = config.StackPolicy?.ToString(),
                         Parameters = config.Parameters,
                         Tags = config.Tags
-                    });
+                    };
+
+                    if (RoleArn != null)
+                    {
+                        request.RoleARN = RoleArn;
+                    }
+
+                    await Client.UpdateStackAsync(request);
                 }
             }
             catch (AmazonCloudFormationException e)
@@ -105,7 +121,7 @@ namespace Cythral.CloudFormation.BuildTasks
             }
 
 
-            if (status.StartsWith("ROLLBACK") || status.EndsWith("FAILED"))
+            if (status.Contains("ROLLBACK") || status.EndsWith("FAILED"))
             {
                 throw new Exception("Deployment failed.  Check the stack logs.");
             }
