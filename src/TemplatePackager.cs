@@ -112,6 +112,15 @@ namespace Cythral.CloudFormation.BuildTasks
             {
                 var tempFile = Path.GetTempFileName() + Path.GetRandomFileName();
                 ZipFile.CreateFromDirectory(directoryToZip, tempFile);
+
+                using var zipFile = File.OpenWrite(tempFile);
+                using var zipArchive = new ZipArchive(zipFile);
+
+                foreach (var entry in zipArchive.Entries)
+                {
+                    entry.ExternalAttributes |= Convert.ToInt32("664", 8) << 16;
+                }
+
                 return tempFile;
             }
 
