@@ -110,9 +110,17 @@ namespace Cythral.CloudFormation.BuildTasks
 
             if (isDirectory || forceZip)
             {
-                var tempFile = Path.GetTempFileName() + Path.GetRandomFileName();
-                ZipFile.CreateFromDirectory(directoryToZip, tempFile);
-                return tempFile;
+                var zipFileName = Path.GetTempFileName() + Path.GetRandomFileName();
+                ZipFile.CreateFromDirectory(directoryToZip, zipFileName);
+
+                using var zipArchive = ZipFile.Open(zipFileName, ZipArchiveMode.Update);
+
+                foreach (var entry in zipArchive.Entries)
+                {
+                    entry.ExternalAttributes |= Convert.ToInt32("664", 8) << 16;
+                }
+
+                return zipFileName;
             }
 
             return path;
