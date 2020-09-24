@@ -16,6 +16,8 @@ namespace Cythral.CloudFormation.BuildTasks
         [Required]
         public string PackageBucket { get; set; }
 
+        public string? Prefix { get; set; }
+
         public string? PackageManifestFile { get; set; }
 
         public string? OutputTemplateFile { get; set; }
@@ -36,7 +38,7 @@ namespace Cythral.CloudFormation.BuildTasks
             var uploader = new S3Uploader(s3Client, PackageBucket);
 
             var templateDirectory = Path.GetDirectoryName(TemplateFile);
-            var packager = new TemplatePackager(templateDirectory!, PackageBucket, templateReader, yamlStream, uploader, PackageManifestFile);
+            var packager = new TemplatePackager(templateDirectory!, PackageBucket, templateReader, yamlStream, uploader, Prefix, PackageManifestFile);
 
             var packagedFile = await packager.Package();
 

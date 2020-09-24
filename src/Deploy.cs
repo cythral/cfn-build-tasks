@@ -41,7 +41,9 @@ namespace Cythral.CloudFormation.BuildTasks
 
         public string PackageBucket { get; set; } = "";
 
-        public string PackageManifestFile { get; set; } = "";
+        public string? Prefix { get; set; }
+
+        public string? PackageManifestFile { get; set; }
 
         public string ConfigFile { get; set; } = "";
 
@@ -158,6 +160,7 @@ namespace Cythral.CloudFormation.BuildTasks
                     TemplateFile = TemplateFile,
                     PackageBucket = PackageBucket,
                     PackageManifestFile = PackageManifestFile,
+                    Prefix = Prefix
                 };
 
                 return await packageTask.Package();

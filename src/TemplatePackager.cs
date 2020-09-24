@@ -20,15 +20,17 @@ namespace Cythral.CloudFormation.BuildTasks
         private readonly YamlStream yamlStream;
         private readonly S3Uploader uploader;
         private readonly string bucketName;
+        private readonly string? prefix;
         private readonly Dictionary<string, string> filesUploaded = new Dictionary<string, string>();
 
-        public TemplatePackager(string templateDirectory, string bucketName, StringReader templateReader, YamlStream yamlStream, S3Uploader uploader, string? packageManifestFile)
+        public TemplatePackager(string templateDirectory, string bucketName, StringReader templateReader, YamlStream yamlStream, S3Uploader uploader, string? prefix, string? packageManifestFile)
         {
             this.templateDirectory = templateDirectory;
             this.templateReader = templateReader;
             this.yamlStream = yamlStream;
             this.uploader = uploader;
             this.bucketName = bucketName;
+            this.prefix = prefix;
             this.packageManifestFile = packageManifestFile;
         }
 
@@ -50,16 +52,17 @@ namespace Cythral.CloudFormation.BuildTasks
                 }
 
                 var path = Path.IsPathFullyQualified(propValue) ? propValue : Path.Combine(templateDirectory, propValue);
-                filesUploaded.TryGetValue(path, out var sum);
+                filesUploaded.TryGetValue(path, out var filename);
 
-                if (sum == null)
+                if (filename == null)
                 {
                     var fileToUpload = GetFileToUpload(path, forceZip);
-                    sum = Sha256sum(fileToUpload);
+                    var sum = Sha256sum(fileToUpload);
 
-                    var task = uploader.Upload(fileToUpload, sum);
+                    filename = prefix != null ? $"{prefix}/{sum}" : sum;
+                    var task = uploader.Upload(fileToUpload, filename);
                     uploadTasks.Add(task);
-                    filesUploaded.Add(path, sum);
+                    filesUploaded.Add(path, filename);
                 }
 
                 var resourceDefinition = prop.PackableResourceDefinition;
@@ -69,12 +72,12 @@ namespace Cythral.CloudFormation.BuildTasks
                 {
                     var newPropDefinition = new YamlMappingNode { };
                     newPropDefinition.Add(resourceDefinition.BucketNameProperty, bucketName);
-                    newPropDefinition.Add(resourceDefinition.ObjectKeyProperty, sum);
+                    newPropDefinition.Add(resourceDefinition.ObjectKeyProperty, filename);
                     propsNode.Children[prop.Name] = newPropDefinition;
                 }
                 else
                 {
-                    propsNode.Children[prop.Name] = new YamlScalarNode($"s3://{bucketName}/{sum}");
+                    propsNode.Children[prop.Name] = new YamlScalarNode($"s3://{bucketName}/{filename}");
                 }
             }
 
