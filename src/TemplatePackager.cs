@@ -5,8 +5,9 @@ using System.IO.Compression;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
-// using YamlDotNet.Core;
+
 using YamlDotNet.RepresentationModel;
 
 namespace Cythral.CloudFormation.BuildTasks
@@ -14,19 +15,21 @@ namespace Cythral.CloudFormation.BuildTasks
     public class TemplatePackager
     {
         private readonly string templateDirectory;
+        private readonly string? packageManifestFile;
         private readonly StringReader templateReader;
         private readonly YamlStream yamlStream;
         private readonly S3Uploader uploader;
         private readonly string bucketName;
         private readonly Dictionary<string, string> filesUploaded = new Dictionary<string, string>();
 
-        public TemplatePackager(string templateDirectory, string bucketName, StringReader templateReader, YamlStream yamlStream, S3Uploader uploader)
+        public TemplatePackager(string templateDirectory, string bucketName, StringReader templateReader, YamlStream yamlStream, S3Uploader uploader, string? packageManifestFile)
         {
             this.templateDirectory = templateDirectory;
             this.templateReader = templateReader;
             this.yamlStream = yamlStream;
             this.uploader = uploader;
             this.bucketName = bucketName;
+            this.packageManifestFile = packageManifestFile;
         }
 
         public async Task<string> Package()
@@ -47,7 +50,6 @@ namespace Cythral.CloudFormation.BuildTasks
                 }
 
                 var path = Path.IsPathFullyQualified(propValue) ? propValue : Path.Combine(templateDirectory, propValue);
-
                 filesUploaded.TryGetValue(path, out var sum);
 
                 if (sum == null)
@@ -81,6 +83,18 @@ namespace Cythral.CloudFormation.BuildTasks
             var builder = new StringBuilder();
             using var writer = new StringWriter(builder);
             yamlStream.Save(writer, false);
+
+            if (packageManifestFile != null)
+            {
+                var manifestRepresentation = new
+                {
+                    BucketName = bucketName,
+                    Files = filesUploaded,
+                };
+
+                var manifestContents = JsonSerializer.Serialize(manifestRepresentation);
+                await File.WriteAllTextAsync(packageManifestFile, manifestContents);
+            }
 
             return builder.ToString();
         }
