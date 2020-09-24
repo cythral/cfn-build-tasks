@@ -36,9 +36,12 @@ namespace Cythral.CloudFormation.BuildTasks
         [Required]
         public string TemplateFile { get; set; }
 
+
         public bool Package { get; set; } = false;
 
         public string PackageBucket { get; set; } = "";
+
+        public string PackageManifestFile { get; set; } = "";
 
         public string ConfigFile { get; set; } = "";
 
@@ -154,6 +157,7 @@ namespace Cythral.CloudFormation.BuildTasks
                 {
                     TemplateFile = TemplateFile,
                     PackageBucket = PackageBucket,
+                    PackageManifestFile = PackageManifestFile,
                 };
 
                 return await packageTask.Package();
