@@ -92,6 +92,7 @@ namespace Cythral.CloudFormation.BuildTasks
                 var manifestRepresentation = new
                 {
                     BucketName = bucketName,
+                    Prefix = prefix,
                     Files = filesUploaded,
                 };
 
