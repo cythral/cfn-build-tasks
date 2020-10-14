@@ -135,7 +135,7 @@ namespace Cythral.CloudFormation.BuildTasks
 
                 foreach (var entry in zipArchive.Entries)
                 {
-                    entry.ExternalAttributes |= Convert.ToInt32("664", 8) << 16;
+                    entry.ExternalAttributes |= Convert.ToInt32("755", 8) << 16;
                 }
 
                 return zipFileName;
