@@ -45,9 +45,16 @@ namespace Cythral.CloudFormation.BuildTasks
 
         private async Task<string> GetStackStatus()
         {
-            var request = new DescribeStacksRequest { StackName = StackName };
-            var response = await Client.DescribeStacksAsync(request);
-            return response.Stacks[0].StackStatus.Value;
+            try
+            {
+                var request = new DescribeStacksRequest { StackName = StackName };
+                var response = await Client.DescribeStacksAsync(request);
+                return response.Stacks[0].StackStatus.Value;
+            }
+            catch (AmazonCloudFormationException)
+            {
+                return "DELETE_COMPLETE";
+            }
         }
     }
 }
