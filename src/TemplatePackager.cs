@@ -150,21 +150,31 @@ namespace Cythral.CloudFormation.BuildTasks
             {
                 var doc = (YamlMappingNode)yamlStream.Documents[0].RootNode;
                 var resources = (YamlMappingNode)doc.Children["Resources"];
+                var metadata = (YamlMappingNode)doc.Children["Metadata"];
+                var children = new List<KeyValuePair<YamlNode, YamlNode>>();
+                children.AddRange(resources);
+                children.AddRange(metadata);
 
-                foreach (var resource in resources)
+                foreach (var resource in children)
                 {
                     var resourceNameNode = (YamlScalarNode)resource.Key;
                     var resourceName = resourceNameNode.Value;
                     var resourceNode = (YamlMappingNode)resource.Value;
-                    var type = (YamlScalarNode)resourceNode.Children["Type"];
-                    var typeName = type.Value;
+                    resourceNode.Children.TryGetValue("Type", out var type);
+                    var typeName = (type as YamlScalarNode)?.Value;
+                    var props = (YamlNode)resourceNode;
 
-                    resourceNode.Children.TryGetValue("Properties", out var props);
-
-                    if (props == null)
+                    if (type != null)
                     {
-                        continue;
+                        resourceNode.Children.TryGetValue("Properties", out props);
+
+                        if (props == null)
+                        {
+                            continue;
+                        }
                     }
+
+                    typeName ??= resourceName;
 
                     foreach (var prop in (YamlMappingNode)props)
                     {
