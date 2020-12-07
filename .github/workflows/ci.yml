@@ -105,7 +105,7 @@ jobs:
         run: dotnet --info
 
       - name: Deploy to NuGet
-        run: dotnet nuget push '${{ steps.download-nugets.outputs.download-path }}/*.nupkg' -k ${FEED_TOKEN} -s ${FEED_URL} --skip-duplicate
+        run: dotnet nuget push "${{ steps.download-nugets.outputs.download-path }}/*.nupkg" -k ${FEED_TOKEN} -s ${FEED_URL} --skip-duplicate
         env:
           FEED_TOKEN: ${{ secrets.NUGET_TOKEN }}
           FEED_URL: ${{ env.NUGET_FEED_URL }}
