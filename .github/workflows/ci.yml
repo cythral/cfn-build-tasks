@@ -2,16 +2,19 @@ name: Continuous Integration
 
 on:
   push:
-    paths-ignore:
-      - "**.md"
+    branches:
+      - "master"
+    tags:
+      - "*"
   pull_request:
-    paths-ignore:
-      - "docs/**"
-      - "**.md"
+  schedule:
+    - cron: "0 0 * * *"
 
 env:
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
-  Configuration: Release
+  DOTNET_NOLOGO: "true"
+  CONFIGURATION: Release
+  NUGET_FEED_URL: https://api.nuget.org/v3/index.json
+  GITHUB_PACKAGES_FEED_URL: https://nuget.pkg.github.com/cythral/index.json
 
 jobs:
   build:
@@ -24,6 +27,22 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set version
+        shell: bash
+        run: echo "VERSION=$(cat version.json | jq -r '.version')" >> $GITHUB_ENV
+
+      - name: Display version
+        run: echo ${{ env.VERSION }}
+
+      - name: Check for Stale Version Number
+        if: ${{ !startsWith(github.ref , 'refs/tags/v') }}
+        shell: bash
+        run: |
+          set -eo pipefail
+          lastTaggedVersion=$(git describe --abbrev=0 --tags)
+          lastTaggedVersionSha=$(git rev-list -n 1 $lastTaggedVersion)
+          if [ "$lastTaggedVersion" = "v$VERSION" ] && [ "$lastTaggedVersionSha" != "${{ github.sha }}" ]; then exit 1; fi
+
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
 
@@ -33,22 +52,15 @@ jobs:
       - name: Restore
         run: dotnet restore
 
-      - name: Set version
-        shell: bash
-        run: echo "VERSION=$(cat version.json | jq -r '.version')" >> $GITHUB_ENV
-
-      - name: Display version
-        run: echo ${{ env.VERSION }}
-
       - name: Build
         shell: bash
-        run: dotnet build -t:build,pack --no-restore -m  -bl:obj/logs/build-${{ matrix.os }}.binlog -p:PackageReleaseNotes="$(sed 's/,/%2c/g' .github/releases/v${{ env.VERSION }}.md)"
+        run: dotnet build --no-restore -m -bl:obj/logs/build-${{ matrix.os }}.binlog
 
       - name: Test
         run: dotnet test --no-build
 
       - name: Upload nugets
-        if: github.event_name == 'push' && matrix.os == 'windows-latest'
+        if: github.event_name == 'push' && matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v1
         with:
           name: nugets
@@ -60,20 +72,45 @@ jobs:
           name: logs-${{ matrix.os }}
           path: obj/logs/
 
-      - name: Deploy to Github Packages
-        if: matrix.os == 'windows-latest' && github.event_name == 'pull_request'
-        run: dotnet gpr push bin/Packages/${{ env.Configuration }}/*.nupkg -k ${{ secrets.GH_TOKEN }}
+          FEED_TOKEN: ${{ secrets.GH_TOKEN }}
+          FEED_URL: ${{ env.GITHUB_PACKAGES_FEED_URL }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Download NuGets
+        uses: actions/download-artifact@v2
+        id: download-nugets
+        with:
+          name: nugets
+
+      - name: Set version
+        shell: bash
+        run: echo "VERSION=$(cat version.json | jq -r '.version')" >> $GITHUB_ENV
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+
+      - name: Display .NET Info
+        run: dotnet --info
 
       - name: Deploy to NuGet
-        if: matrix.os == 'windows-latest' && github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/release/*')
-        shell: bash
-        run: for file in $(ls bin/Packages/${{ env.Configuration }}/*.nupkg); do dotnet nuget push $file -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json --skip-duplicate; done
+        run: dotnet nuget push '${{ steps.download-nugets.outputs.download-path }}/*.nupkg' -k ${FEED_TOKEN} -s ${FEED_URL} --skip-duplicate
+        env:
+          FEED_TOKEN: ${{ secrets.NUGET_TOKEN }}
+          FEED_URL: ${{ env.NUGET_FEED_URL }}
 
       - uses: ncipollo/release-action@v1
-        if: matrix.os == 'windows-latest' && github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/release/*')
         with:
-          artifacts: "bin/Packages/${{ env.Configuration}}/*.nupkg,bin/Packages/${{ env.Configuration}}/*.snupkg"
+          artifacts: "${{ steps.download-nugets.outputs.download-path }}/*.nupkg,${{ steps.download-nugets.outputs.download-path }}/*.snupkg"
           bodyFile: ".github/releases/v${{ env.VERSION }}.md"
           tag: v${{ env.VERSION }}
-          commit: ${{ env.GITHUB_SHA }}
+          commit: ${{ github.sha }}
           token: ${{ secrets.GH_TOKEN }}
+          prerelease: ${{ contains(env.VERSION, '-') }}

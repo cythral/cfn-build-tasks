@@ -10,9 +10,9 @@
       "version": "5.0.142002",
       "commands": ["dotnet-format"]
     },
-    "gpr": {
-      "version": "0.1.233",
-      "commands": ["gpr"]
+    "dotnet-json": {
+      "version": "0.4.1",
+      "commands": ["dotnet-json"]
     }
   }
 }

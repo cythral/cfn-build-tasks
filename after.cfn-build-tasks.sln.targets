@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Target Name="RestoreTools" AfterTargets="Restore">
-        <Exec Command="dotnet tool restore" ConsoleToMsBuild="true" />
+        <Exec
+            Command="dotnet json --help"
+            ConsoleToMsBuild="true"
+            StandardOutputImportance="Low"
+            StandardErrorImportance="Low"
+            IgnoreExitCode="true"
+        >
+            <Output TaskParameter="ExitCode" PropertyName="Tool_JSON_ExitCode" />
+        </Exec>
+
+        <Exec
+            Command="dotnet nbgv --help"
+            ConsoleToMsBuild="true"
+            StandardOutputImportance="Low"
+            StandardErrorImportance="Low"
+            IgnoreExitCode="true"
+        >
+            <Output TaskParameter="ExitCode" PropertyName="Tool_NBGV_ExitCode" />
+        </Exec>
+
+        <Exec
+            Command="dotnet tool restore"
+            ConsoleToMsBuild="true"
+            Condition="$(Tool_JSON_ExitCode) != '0' or $(Tool_NBGV_ExitCode) != '0'"
+        />
+    </Target>
+
+    <Target Name="GetReleaseNotes" BeforeTargets="Build" DependsOnTargets="RestoreTools" Condition="'$(DesignTimeBuild)' != 'true'">
+        <Exec Command="dotnet json get $(MSBuildThisFileDirectory)version.json version" ConsoleToMsBuild="true" StandardOutputImportance="Low">
+            <Output TaskParameter="ConsoleOutput" PropertyName="SimpleVersion" />
+        </Exec>
+
+        <PropertyGroup>
+            <ReleaseNotesFile>$(MSBuildThisFileDirectory).github/releases/v$(SimpleVersion).md</ReleaseNotesFile>
+        </PropertyGroup>
+
+        <Error Condition="!Exists('$(ReleaseNotesFile)')" File="$(ReleaseNotesFile)" Text="Release notes file missing." />
+
+        <PropertyGroup>
+            <PackageReleaseNotes>$([System.IO.File]::ReadAllText('$(ReleaseNotesFile)'))</PackageReleaseNotes>
+        </PropertyGroup>
+
+        <Message Importance="High" Text="Version: $(PackageVersion)" />
+        <Message Importance="High" Text="Release Notes:%0A$(PackageReleaseNotes)%0A" />
     </Target>
 </Project>

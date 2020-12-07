@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk" DefaultTargets="Pack">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -26,8 +26,8 @@
 
   <Target Name="FatPackage" DependsOnTargets="Publish">
     <ItemGroup>
-        <TfmSpecificPackageFile Include="$(PublishDepsFilePath)" PackagePath="$(PackPublishedContentPath)/$(ProjectDepsFileName)" />
-        <TfmSpecificPackageFile Include="@(ResolvedFileToPublish)" PackagePath="$(PackPublishedContentPath)/%(ResolvedFileToPublish.RelativePath)" />
+      <TfmSpecificPackageFile Include="$(PublishDepsFilePath)" PackagePath="$(PackPublishedContentPath)/$(ProjectDepsFileName)" />
+      <TfmSpecificPackageFile Include="@(ResolvedFileToPublish)" PackagePath="$(PackPublishedContentPath)/%(ResolvedFileToPublish.RelativePath)" />
     </ItemGroup>
   </Target>
 </Project>
