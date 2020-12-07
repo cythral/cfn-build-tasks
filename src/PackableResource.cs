@@ -8,9 +8,9 @@ namespace Cythral.CloudFormation.BuildTasks
 
         }
 
-        public bool PackNullProperty { get; set; } = false;
+        public bool PackNullProperty { get; set; }
 
-        public bool ForceZip { get; set; } = false;
+        public bool ForceZip { get; set; }
 
         public string? BucketNameProperty { get; set; }
 

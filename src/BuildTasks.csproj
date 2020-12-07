@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>Cythral.CloudFormation.BuildTasks</AssemblyName>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
@@ -26,7 +26,6 @@
 
   <Target Name="FatPackage" DependsOnTargets="Publish">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="$(PublishDepsFilePath)" PackagePath="$(PackPublishedContentPath)/$(ProjectDepsFileName)" />
       <TfmSpecificPackageFile Include="@(ResolvedFileToPublish)" PackagePath="$(PackPublishedContentPath)/%(ResolvedFileToPublish.RelativePath)" />
     </ItemGroup>
   </Target>

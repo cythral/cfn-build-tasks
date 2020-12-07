@@ -37,7 +37,7 @@ namespace Cythral.CloudFormation.BuildTasks
         public string TemplateFile { get; set; }
 
 
-        public bool Package { get; set; } = false;
+        public bool Package { get; set; }
 
         public string PackageBucket { get; set; } = "";
 
@@ -119,14 +119,14 @@ namespace Cythral.CloudFormation.BuildTasks
 
             Thread.Sleep(200);
 
-            while ((status = await GetStackStatus()).EndsWith("_IN_PROGRESS"))
+            while ((status = await GetStackStatus()).EndsWith("_IN_PROGRESS", StringComparison.Ordinal))
             {
                 Thread.Sleep(10000);
                 Console.WriteLine("Waiting for create/update to complete....");
             }
 
 
-            if (status.Contains("ROLLBACK") || status.EndsWith("FAILED"))
+            if (status.Contains("ROLLBACK", StringComparison.Ordinal) || status.EndsWith("FAILED", StringComparison.Ordinal))
             {
                 throw new Exception("Deployment failed.  Check the stack logs.");
             }
@@ -148,7 +148,13 @@ namespace Cythral.CloudFormation.BuildTasks
             options.Converters.Add(new TagConverter());
             options.Converters.Add(new StackPolicyBodyConverter());
 
-            return await JsonSerializer.DeserializeAsync<Config>(stream, options);
+            var config = await JsonSerializer.DeserializeAsync<Config>(stream, options);
+            if (config == null)
+            {
+                throw new Exception("Config unexpectedly serialized to null.");
+            }
+
+            return config;
         }
 
         private async Task<string> GetTemplateFileContents()
