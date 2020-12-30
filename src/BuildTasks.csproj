@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk" DefaultTargets="Pack">
+<Project Sdk="Microsoft.NET.Sdk" DefaultTargets="Build;Pack">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
