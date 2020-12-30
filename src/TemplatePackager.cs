@@ -21,7 +21,7 @@ namespace Cythral.CloudFormation.BuildTasks
         private readonly S3Uploader uploader;
         private readonly string bucketName;
         private readonly string? prefix;
-        private readonly Dictionary<string, string> filesUploaded = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> filesUploaded = new();
 
         public TemplatePackager(string templateDirectory, string bucketName, StringReader templateReader, YamlStream yamlStream, S3Uploader uploader, string? prefix, string? packageManifestFile)
         {
@@ -107,7 +107,12 @@ namespace Cythral.CloudFormation.BuildTasks
         {
             using var SHA256 = SHA256Managed.Create();
             using var fileStream = File.OpenRead(file);
-            return Convert.ToBase64String(SHA256.ComputeHash(fileStream));
+            var bytes = SHA256.ComputeHash(fileStream);
+            var sum = Convert.ToBase64String(bytes);
+
+            return sum
+                .Replace('+', '-')
+                .Replace('/', '_');
         }
 
         private static string GetFileToUpload(string path, bool forceZip)
