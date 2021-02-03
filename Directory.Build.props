@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
     <PropertyGroup>
         <Authors>Talen Fisher</Authors>
@@ -42,7 +43,6 @@
     <ItemGroup>
         <PackageReference Include="Nerdbank.GitVersioning" Version="3.3.37" PrivateAssets="all" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all" />
-        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1" PrivateAssets="all" />
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeStyle" Version="3.8.0" PrivateAssets="all" />
     </ItemGroup>
 </Project>
