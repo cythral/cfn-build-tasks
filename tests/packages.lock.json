@@ -122,16 +122,16 @@
       },
       "AWSSDK.CloudFormation": {
         "type": "Transitive",
-        "resolved": "3.5.0",
-        "contentHash": "AS9lPQ+znYz20fos5wf0APTcEHpa7Csko9W1rORm1R0LX5N8Jv7tnjqDWN4E0waN2tAcjw/d8r2qmoXZUeVxng==",
+        "resolved": "3.5.2.23",
+        "contentHash": "6Qm/5b15DnJu33pXDRyjjRbgJRK/u+a1nyf9BymvEbPwS05dufb7Q2XeNX3+jXf/3P0eaOjFKXrpx9w7GmRsIQ==",
         "dependencies": {
-          "AWSSDK.Core": "[3.5.0, 3.6.0)"
+          "AWSSDK.Core": "[3.5.2.4, 3.6.0)"
         }
       },
       "AWSSDK.Core": {
         "type": "Transitive",
-        "resolved": "3.5.0",
-        "contentHash": "bC5slbW3f1QgYlJK/I/zDUlixHq8YzktTwreJHwoOCpnRFB/IHV4EIgdEGwQnWOneJwRfwq4ZB0OhlrM3aT2pw=="
+        "resolved": "3.5.2.4",
+        "contentHash": "dm3hMqJieiySx1sVTtr+7r2BuAKQErySbU8t90uQ7tWpQCboHSigez8A5V4IuAEcAofkzMDXnKh3sIqV53iKzQ=="
       },
       "AWSSDK.S3": {
         "type": "Transitive",
@@ -1089,18 +1089,18 @@
       },
       "YamlDotNet": {
         "type": "Transitive",
-        "resolved": "8.1.2",
-        "contentHash": "GlPKbb4l+91dyYVKV7UnJlr2CWooNNM1ayZWC90QAmlFPgbwSkfhgId7dGjTAHqkB84BZqjMSy5PlAYf1iejVA=="
+        "resolved": "9.1.4",
+        "contentHash": "dVVZVhQxTI4xTNc9YorE+RruBFPPYKP44kMijE6Z5OQQE7zK+SEmh2sPm091CrTYVz1jjIuXKIBm1kFLrlsQJg=="
       },
       "Cythral.CloudFormation.BuildTasks": {
         "type": "Project",
         "dependencies": {
-          "AWSSDK.CloudFormation": "3.5.0",
+          "AWSSDK.CloudFormation": "3.5.2.23",
           "AWSSDK.S3": "3.5.0",
           "Microsoft.Build.Framework": "16.8.0",
           "Microsoft.Build.Utilities.Core": "16.8.0",
           "System.Runtime.Loader": "4.3.0",
-          "YamlDotNet": "8.1.2"
+          "YamlDotNet": "9.1.4"
         }
       }
     }
