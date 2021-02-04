@@ -84,8 +84,15 @@ jobs:
         if: failure() && github.event_name == 'push'
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        with:
-          args: "${{ github.event.repository.name }} build failed on ${{ matrix.os }}"
+          DISCORD_EMBEDS: |
+            [
+              {
+                "title": "[${{ github.event.repository.name }}] Build Failed",
+                "url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+                "description": "An error occurred while building ${{ github.event.repository.name }} ${{ env.VERSION }} on ${{ matrix.os }}",
+                "color": 12720135
+              }
+            ]
 
   release:
     needs: build
@@ -127,18 +134,17 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
           prerelease: ${{ contains(env.VERSION, '-') }}
 
-      - name: Discord Success Notification
-        uses: Ilshidur/action-discord@master
-        if: success()
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        with:
-          args: "${{ github.event.repository.name }} successfully deployed ${{ env.VERSION }}"
-
       - name: Discord Failure Notification
         uses: Ilshidur/action-discord@master
         if: failure()
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        with:
-          args: "${{ github.event.repository.name }} deployment failed."
+          DISCORD_EMBEDS: |
+            [
+              {
+                "title": "[${{ github.event.repository.name }}] Release Failed",
+                "url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+                "description": "An error occurred while releasing ${{ github.event.repository.name }} ${{ env.VERSION }}",
+                "color": 12720135
+              }
+            ]
