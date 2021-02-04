@@ -21,6 +21,8 @@ jobs:
           git config --global user.name "Brighid"
           git config --global user.email "52382196+brighid-bot@users.noreply.github.com"
 
+      - run: exit 1
+
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
@@ -47,5 +49,13 @@ jobs:
         if: failure()
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        with:
-          args: "${{ github.event.repository.name }} automatic dependency updates failed."
+          DISCORD_EMBEDS: |
+            {
+              "embeds": [
+                {
+                  "title": "[${{ github.event.repository.name }}] Dependency Update Failure",
+                  "description": "Automatic dependency updates failed for ${{ github.event.repository.name }}.",
+                  "color": 12720135
+                }
+              ]
+            }
