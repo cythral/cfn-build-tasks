@@ -73,7 +73,7 @@ jobs:
           path: obj/logs/
 
       - name: Deploy to Github Packages
-        if: matrix.os == 'ubuntu-latest' && github.event_name == 'push'
+        if: matrix.os == 'ubuntu-latest' && (github.event_name == 'push' || github.event_name == 'schedule')
         run: dotnet nuget push "bin/Packages/${CONFIGURATION}/*.nupkg" -k ${FEED_TOKEN} -s ${FEED_URL} --skip-duplicate --no-symbols 1
         env:
           FEED_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -81,7 +81,7 @@ jobs:
 
       - name: Discord Failure Notification
         uses: Ilshidur/action-discord@master
-        if: failure() && github.event_name == 'push'
+        if: failure() && (github.event_name == 'push' || github.event_name == 'schedule')
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_EMBEDS: |
