@@ -50,12 +50,10 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_EMBEDS: |
-            {
-              "embeds": [
-                {
-                  "title": "[${{ github.event.repository.name }}] Dependency Update Failure",
-                  "description": "Automatic dependency updates failed for ${{ github.event.repository.name }}.",
-                  "color": 12720135
-                }
-              ]
-            }
+            [
+              {
+                "title": "[${{ github.event.repository.name }}] Dependency Update Failure",
+                "description": "Automatic dependency updates failed for ${{ github.event.repository.name }}.",
+                "color": 12720135
+              }
+            ]
