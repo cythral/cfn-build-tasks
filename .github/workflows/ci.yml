@@ -79,6 +79,14 @@ jobs:
           FEED_TOKEN: ${{ secrets.GH_TOKEN }}
           FEED_URL: ${{ env.GITHUB_PACKAGES_FEED_URL }}
 
+      - name: Discord Failure Notification
+        uses: Ilshidur/action-discord@master
+        if: failure() && github.event_name == 'push'
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: "${{ github.event.repository.name }} build failed on ${{ matrix.os }}"
+
   release:
     needs: build
     runs-on: ubuntu-latest
@@ -118,3 +126,19 @@ jobs:
           commit: ${{ github.sha }}
           token: ${{ secrets.GH_TOKEN }}
           prerelease: ${{ contains(env.VERSION, '-') }}
+
+      - name: Discord Success Notification
+        uses: Ilshidur/action-discord@master
+        if: success()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: "${{ github.event.repository.name }} successfully deployed ${{ env.VERSION }}"
+
+      - name: Discord Failure Notification
+        uses: Ilshidur/action-discord@master
+        if: failure()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: "${{ github.event.repository.name }} deployment failed."
