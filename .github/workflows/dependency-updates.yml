@@ -53,7 +53,7 @@ jobs:
             [
               {
                 "title": "[${{ github.event.repository.name }}] Dependency Update Failure",
-                "url": "https://github.com/${{ github.repository }}/runs/${{ github.run_id }}",
+                "url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}",
                 "description": "Automatic dependency updates failed for ${{ github.event.repository.name }}.",
                 "color": 12720135
               }
