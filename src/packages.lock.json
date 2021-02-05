@@ -4,11 +4,11 @@
     ".NETCoreApp,Version=v5.0": {
       "AWSSDK.CloudFormation": {
         "type": "Direct",
-        "requested": "[3.5.2.23, )",
-        "resolved": "3.5.2.23",
-        "contentHash": "6Qm/5b15DnJu33pXDRyjjRbgJRK/u+a1nyf9BymvEbPwS05dufb7Q2XeNX3+jXf/3P0eaOjFKXrpx9w7GmRsIQ==",
+        "requested": "[3.5.2.24, )",
+        "resolved": "3.5.2.24",
+        "contentHash": "r8Glhjn6Xmpxj1wXo/XqCbPB0HlmJhLXyeyursaqb9uhdheTnCZhAnUI7wGgZkMbbIppGACXiKZNbUID4ebfRw==",
         "dependencies": {
-          "AWSSDK.Core": "[3.5.2.4, 3.6.0)"
+          "AWSSDK.Core": "[3.5.2.6, 3.6.0)"
         }
       },
       "AWSSDK.S3": {
