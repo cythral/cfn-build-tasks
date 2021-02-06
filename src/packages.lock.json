@@ -4,11 +4,11 @@
     ".NETCoreApp,Version=v5.0": {
       "AWSSDK.CloudFormation": {
         "type": "Direct",
-        "requested": "[3.5.2.24, )",
-        "resolved": "3.5.2.24",
-        "contentHash": "r8Glhjn6Xmpxj1wXo/XqCbPB0HlmJhLXyeyursaqb9uhdheTnCZhAnUI7wGgZkMbbIppGACXiKZNbUID4ebfRw==",
+        "requested": "[3.5.2.25, )",
+        "resolved": "3.5.2.25",
+        "contentHash": "hKzYvKJa4cg0JmkzlEA7yQHAp3roN0ZNZtHFrAgyiLGZN/RYLNn8+qeWxWFQTrWUBHSCwon4dSXQzRO7JuO2oQ==",
         "dependencies": {
-          "AWSSDK.Core": "[3.5.2.6, 3.6.0)"
+          "AWSSDK.Core": "[3.5.2.7, 3.6.0)"
         }
       },
       "AWSSDK.S3": {
@@ -83,8 +83,8 @@
       },
       "AWSSDK.Core": {
         "type": "Transitive",
-        "resolved": "3.5.2.6",
-        "contentHash": "aPhk/2nqLgaiB610zDVxR+ftZbxxLUvPEyNocPEQzseadWAqBKEPyjcRSaTduO36b8/+alL7ukTWOA2dq0mdQw=="
+        "resolved": "3.5.2.7",
+        "contentHash": "B4ouBMXvfNmLHxFhI/L5u4SdqeISiGT3b6+rL7renDVC1YzMM1fl6Vlp2mqzTpJm2t+FuQB6gBFdlM64GnNSyg=="
       },
       "Microsoft.Build.Tasks.Git": {
         "type": "Transitive",
