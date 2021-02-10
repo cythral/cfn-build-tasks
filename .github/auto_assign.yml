@@ -1,4 +1,5 @@
+addReviewers: false
 addAssignees: true
-numberOfAssignees: 1
+numberOfAssignees: 0
 assignees:
   - talenfisher
