@@ -156,8 +156,8 @@
       },
       "Microsoft.Build.Framework": {
         "type": "Transitive",
-        "resolved": "16.8.0",
-        "contentHash": "wCD7UB4E87q/dhXIq1RuY6KtAZNec8FhpLL3gizaqu/6LJrTEFFYULg6eANK4kmFMOwP8GJ06LRz5fqEQikw1Q==",
+        "resolved": "16.9.0",
+        "contentHash": "vY9ftq43is1TlHgUz0RBnTwF36QerDJ87/GXUd6G02h6QpfrB+jWD9vEFs7B7ZsyJ4vIFwGy+g3RcgYQrQWxpA==",
         "dependencies": {
           "System.Security.Permissions": "4.7.0"
         }
@@ -1062,9 +1062,9 @@
       "Cythral.CloudFormation.BuildTasks": {
         "type": "Project",
         "dependencies": {
-          "AWSSDK.S3": "3.5.9.1",
           "AWSSDK.CloudFormation": "3.5.3.3",
-          "Microsoft.Build.Framework": "16.8.0",
+          "AWSSDK.S3": "3.5.9.1",
+          "Microsoft.Build.Framework": "16.9.0",
           "Microsoft.Build.Utilities.Core": "16.8.0",
           "System.Runtime.Loader": "4.3.0",
           "YamlDotNet": "9.1.4"
