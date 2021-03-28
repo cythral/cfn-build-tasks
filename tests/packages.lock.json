@@ -1056,8 +1056,8 @@
       },
       "YamlDotNet": {
         "type": "Transitive",
-        "resolved": "9.1.4",
-        "contentHash": "dVVZVhQxTI4xTNc9YorE+RruBFPPYKP44kMijE6Z5OQQE7zK+SEmh2sPm091CrTYVz1jjIuXKIBm1kFLrlsQJg=="
+        "resolved": "10.0.0",
+        "contentHash": "qix5WUoZ9mfzhnXlzgVXROMTWsVZ8epGX5IGEUO8eYgNYJ2L3T2GNLBsoqAttEGmfQmDEHSs35jePFz1m+fewg=="
       },
       "Cythral.CloudFormation.BuildTasks": {
         "type": "Project",
@@ -1067,7 +1067,7 @@
           "Microsoft.Build.Framework": "16.9.0",
           "Microsoft.Build.Utilities.Core": "16.9.0",
           "System.Runtime.Loader": "4.3.0",
-          "YamlDotNet": "9.1.4"
+          "YamlDotNet": "10.0.0"
         }
       }
     }

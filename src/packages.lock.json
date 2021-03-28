@@ -77,9 +77,9 @@
       },
       "YamlDotNet": {
         "type": "Direct",
-        "requested": "[9.1.4, )",
-        "resolved": "9.1.4",
-        "contentHash": "dVVZVhQxTI4xTNc9YorE+RruBFPPYKP44kMijE6Z5OQQE7zK+SEmh2sPm091CrTYVz1jjIuXKIBm1kFLrlsQJg=="
+        "requested": "[10.0.0, )",
+        "resolved": "10.0.0",
+        "contentHash": "qix5WUoZ9mfzhnXlzgVXROMTWsVZ8epGX5IGEUO8eYgNYJ2L3T2GNLBsoqAttEGmfQmDEHSs35jePFz1m+fewg=="
       },
       "AWSSDK.Core": {
         "type": "Transitive",
