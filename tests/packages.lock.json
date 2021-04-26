@@ -14,11 +14,11 @@
       },
       "AutoFixture.NUnit3": {
         "type": "Direct",
-        "requested": "[4.16.0, )",
-        "resolved": "4.16.0",
-        "contentHash": "RfIyrgyreMVfFJEr2M/4qTvXSrRkjJkIeGTg25zZLnUpmfh5CXmFOS/7+QWfpSSH2wRqxrGy9UDL0zDUPtc4qg==",
+        "requested": "[4.17.0, )",
+        "resolved": "4.17.0",
+        "contentHash": "v5VkKkzHSsjdRNOccst/nYkiJsXdAWwKmgxidlToL9FFQAHicCT1zwl0IF4pGbwpAmqKi4+dl4qZ+31iyeAXmg==",
         "dependencies": {
-          "AutoFixture": "4.16.0",
+          "AutoFixture": "4.17.0",
           "NUnit": "[3.7.0, 4.0.0)"
         }
       },
