@@ -169,12 +169,14 @@
       },
       "Microsoft.Build.Utilities.Core": {
         "type": "Transitive",
-        "resolved": "16.9.0",
-        "contentHash": "rpxfQlBo2hkFODFJZKPYxMsl5QGIqQ6GlSYnQGKhl+Fu65cvJDk4jRi/R9i+X5/+lSeHhRlQbo+UUhg6cqMkRw==",
+        "resolved": "16.10.0",
+        "contentHash": "R8eATgdaGCfdepd67LMe1qhJz6iQOTuI9gVoOqXrHwhc77sBDqG0XD9zKvrgOqfS6NJ03KKTAhbbXnLgD5fKCA==",
         "dependencies": {
-          "Microsoft.Build.Framework": "16.9.0",
+          "Microsoft.Build.Framework": "16.10.0",
+          "Microsoft.NET.StringTools": "1.0.0",
           "Microsoft.Win32.Registry": "4.3.0",
           "System.Collections.Immutable": "5.0.0",
+          "System.Configuration.ConfigurationManager": "4.7.0",
           "System.Security.Permissions": "4.7.0",
           "System.Text.Encoding.CodePages": "4.0.1"
         }
@@ -220,6 +222,15 @@
           "System.Runtime.Extensions": "4.1.0",
           "System.Runtime.InteropServices": "4.1.0",
           "System.Runtime.InteropServices.RuntimeInformation": "4.0.0"
+        }
+      },
+      "Microsoft.NET.StringTools": {
+        "type": "Transitive",
+        "resolved": "1.0.0",
+        "contentHash": "ZYVcoDM0LnSyT5nWoRGfShYdOecCw2sOXWwP6j1Z0u48Xq3+BVvZ+EiPCX9/8Gz439giW+O1H1kWF9Eb/w6rVg==",
+        "dependencies": {
+          "System.Memory": "4.5.4",
+          "System.Runtime.CompilerServices.Unsafe": "5.0.0"
         }
       },
       "Microsoft.NETCore.Platforms": {
@@ -460,10 +471,11 @@
       },
       "System.Configuration.ConfigurationManager": {
         "type": "Transitive",
-        "resolved": "4.4.0",
-        "contentHash": "gWwQv/Ug1qWJmHCmN17nAbxJYmQBM/E94QxKLksvUiiKB1Ld3Sc/eK1lgmbSjDFxkQhVuayI/cGFZhpBSodLrg==",
+        "resolved": "4.7.0",
+        "contentHash": "/anOTeSZCNNI2zDilogWrZ8pNqCmYbzGNexUnNhjW8k0sHqEZ2nHJBp147jBV3hGYswu5lINpNg1vxR7bnqvVA==",
         "dependencies": {
-          "System.Security.Cryptography.ProtectedData": "4.4.0"
+          "System.Security.Cryptography.ProtectedData": "4.7.0",
+          "System.Security.Permissions": "4.7.0"
         }
       },
       "System.Diagnostics.Debug": {
@@ -654,6 +666,11 @@
           "System.Threading": "4.3.0"
         }
       },
+      "System.Memory": {
+        "type": "Transitive",
+        "resolved": "4.5.4",
+        "contentHash": "1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw=="
+      },
       "System.ObjectModel": {
         "type": "Transitive",
         "resolved": "4.3.0",
@@ -767,6 +784,11 @@
           "Microsoft.NETCore.Targets": "1.1.0"
         }
       },
+      "System.Runtime.CompilerServices.Unsafe": {
+        "type": "Transitive",
+        "resolved": "5.0.0",
+        "contentHash": "ZD9TMpsmYJLrxbbmdvhwt9YEgG5WntEnZ/d1eH8JBX9LBp+Ju8BSBhUGbZMNVHHomWo2KVImJhTDl2hIgw/6MA=="
+      },
       "System.Runtime.Extensions": {
         "type": "Transitive",
         "resolved": "4.3.0",
@@ -844,8 +866,8 @@
       },
       "System.Security.Cryptography.ProtectedData": {
         "type": "Transitive",
-        "resolved": "4.4.0",
-        "contentHash": "cJV7ScGW7EhatRsjehfvvYVBvtiSMKgN8bOVI0bQhnF5bU7vnHVIsH49Kva7i7GWaWYvmEzkYVk1TC+gZYBEog=="
+        "resolved": "4.7.0",
+        "contentHash": "ehYW0m9ptxpGWvE4zgqongBVWpSDU/JCFD4K7krxkQwSz/sFQjEXCUqpvencjy6DYDbn7Ig09R8GFffu8TtneQ=="
       },
       "System.Security.Permissions": {
         "type": "Transitive",
@@ -1065,7 +1087,7 @@
           "AWSSDK.CloudFormation": "3.7.2.11",
           "AWSSDK.S3": "3.7.0.28",
           "Microsoft.Build.Framework": "16.10.0",
-          "Microsoft.Build.Utilities.Core": "16.9.0",
+          "Microsoft.Build.Utilities.Core": "16.10.0",
           "System.Runtime.Loader": "4.3.0",
           "YamlDotNet": "11.1.1"
         }
