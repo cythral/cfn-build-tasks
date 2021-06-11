@@ -112,8 +112,8 @@
       },
       "AWSSDK.S3": {
         "type": "Transitive",
-        "resolved": "3.7.1",
-        "contentHash": "GhUxyqLDVNj0qubAmHuytZ5P68yT1PTnV5Phig6WziPgOTVrGJfgSx9cw6L5KSZxEGIZNXwuIaVCYA6N8v5kLQ==",
+        "resolved": "3.7.1.1",
+        "contentHash": "ePwyUpsd9S4rHZ4ywmn4G5F3GiXWAlZUMECKDRCEq382WgGs1BMOUTe1SvriOfykOZ/4Z65A9HJISU6M9mBRUw==",
         "dependencies": {
           "AWSSDK.Core": "[3.7.0.31, 4.0.0)"
         }
@@ -938,7 +938,7 @@
         "type": "Project",
         "dependencies": {
           "AWSSDK.CloudFormation": "3.7.2.14",
-          "AWSSDK.S3": "3.7.1",
+          "AWSSDK.S3": "3.7.1.1",
           "Microsoft.Build.Framework": "16.10.0",
           "Microsoft.Build.Utilities.Core": "16.10.0",
           "System.Runtime.Loader": "4.3.0",
