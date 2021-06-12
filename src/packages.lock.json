@@ -13,11 +13,11 @@
       },
       "AWSSDK.S3": {
         "type": "Direct",
-        "requested": "[3.7.1.1, )",
-        "resolved": "3.7.1.1",
-        "contentHash": "ePwyUpsd9S4rHZ4ywmn4G5F3GiXWAlZUMECKDRCEq382WgGs1BMOUTe1SvriOfykOZ/4Z65A9HJISU6M9mBRUw==",
+        "requested": "[3.7.1.2, )",
+        "resolved": "3.7.1.2",
+        "contentHash": "FmZAiQGS8ZHCJ7Qfew2imGbEE+3l/HMf869eXHMRooMqJX8BKtOF61FY8NKCdn9t2sG9RStypXKjgIqfjrj5TQ==",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.0.31, 4.0.0)"
+          "AWSSDK.Core": "[3.7.0.32, 4.0.0)"
         }
       },
       "Microsoft.Build.Framework": {
