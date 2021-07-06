@@ -13,11 +13,11 @@
       },
       "AWSSDK.S3": {
         "type": "Direct",
-        "requested": "[3.7.1.7, )",
-        "resolved": "3.7.1.7",
-        "contentHash": "E16Nhb9l+udVajJwz1+IMog3dUhIM49qGUd8mqoPKr0RAYiAmsFcUdJRwrjNLzCrh99rQEFj7Fa7BifCTL+vnw==",
+        "requested": "[3.7.1.8, )",
+        "resolved": "3.7.1.8",
+        "contentHash": "bMuEeQDhsCbBzjm0Nzd7beRatPJ/QXN7cmOC9iLy3sEGZCU53Jguu3sE6q6zyF9ytwjCtUMtlMCT8I5aR8EDXQ==",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.0.37, 4.0.0)"
+          "AWSSDK.Core": "[3.7.0.38, 4.0.0)"
         }
       },
       "Microsoft.Build.Framework": {
@@ -79,9 +79,9 @@
       },
       "YamlDotNet": {
         "type": "Direct",
-        "requested": "[11.2.0, )",
-        "resolved": "11.2.0",
-        "contentHash": "9PvAymQMmHAKSdzbUwlmZypyqTuz6AxYv7J1DcTSotKCsLwPxg69gH1fEHgGdbrNLDzJ6Q0W/jX+e10/fppbnw=="
+        "requested": "[11.2.1, )",
+        "resolved": "11.2.1",
+        "contentHash": "tBt8K+korVfrjH9wyDEhiLKxbs8qoLCLIFwvYgkSUuMC9//w3z0cFQ8LQAI/5MCKq+BMil0cfRTRvPeE7eXhQw=="
       },
       "AWSSDK.Core": {
         "type": "Transitive",
