@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.S3" Version="3.7.1.9" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.1.16" />
     <PackageReference Include="AWSSDK.CloudFormation" Version="3.7.3.11" />
     <PackageReference Include="Microsoft.Build.Framework" Version="16.10.0" />
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.10.0" />
