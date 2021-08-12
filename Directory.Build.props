@@ -18,16 +18,17 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <SkipDefaultEditorConfigAsAdditionalFile>true</SkipDefaultEditorConfigAsAdditionalFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RestoreLockedMode>true</RestoreLockedMode>
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
   <PropertyGroup>
-    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-    <RestoreLockedMode Condition="$(IGNORE_LOCK_FILES) != 'true'">true</RestoreLockedMode>
     <OutputPath>$(MSBuildThisFileDirectory)bin\$(MSBuildProjectName)\$(Configuration)</OutputPath>
     <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <PackageOutputPath>$(MSBuildThisFileDirectory)bin\Packages\$(Configuration)</PackageOutputPath>
     <RestorePackagesPath>$(MSBuildThisFileDirectory).nuget</RestorePackagesPath>
-    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
-    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
@@ -38,6 +39,5 @@
   <ItemGroup>
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.231" PrivateAssets="all" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeStyle" Version="3.10.0" PrivateAssets="all" />
   </ItemGroup>
 </Project>

@@ -44,12 +44,6 @@
           "System.Text.Encoding.CodePages": "4.0.1"
         }
       },
-      "Microsoft.CodeAnalysis.CSharp.CodeStyle": {
-        "type": "Direct",
-        "requested": "[3.10.0, )",
-        "resolved": "3.10.0",
-        "contentHash": "jnPs5tldUmQqKoWUCwdm0ZXhdgE5b5HHQF1Q1anHIdZqHLZ05mKRN7IgaMOiyo73OM+pHFPLJDudM5LXuu15TA=="
-      },
       "Microsoft.SourceLink.GitHub": {
         "type": "Direct",
         "requested": "[1.0.0, )",
