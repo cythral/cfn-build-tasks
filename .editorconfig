@@ -3,6 +3,9 @@ root = true
 [*.{cs,csx}]
 insert_final_newline = true
 
+# Namespace should match folder structure
+dotnet_diagnostic.IDE0130.severity = none
+
 # Imports - Organization and Remove Unnecessary Ones
 dotnet_separate_import_directive_groups = true
 dotnet_diagnostic.IDE0005.severity = error
