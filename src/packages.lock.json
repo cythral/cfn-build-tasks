@@ -22,9 +22,9 @@
       },
       "Microsoft.Build.Framework": {
         "type": "Direct",
-        "requested": "[16.10.0, )",
-        "resolved": "16.10.0",
-        "contentHash": "uD2GUw3AYlFSpU42c/80DouuJL6w1Kb06q4FEjQhW/9wjhBwukgx13T5MPIpSvQ8ssahKINanHfMUL89EVQHgQ==",
+        "requested": "[16.11.0, )",
+        "resolved": "16.11.0",
+        "contentHash": "ZBKk+0W/fstpsYg7j1nNvqUQ4vjl4xetKwRf7/CCp956lckEOKuCpNO9yj0yO/UlmUaNGU+8csF+oYWIdOZGPw==",
         "dependencies": {
           "System.Security.Permissions": "4.7.0"
         }
