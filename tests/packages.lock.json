@@ -139,8 +139,8 @@
       },
       "Microsoft.Build.Framework": {
         "type": "Transitive",
-        "resolved": "16.10.0",
-        "contentHash": "uD2GUw3AYlFSpU42c/80DouuJL6w1Kb06q4FEjQhW/9wjhBwukgx13T5MPIpSvQ8ssahKINanHfMUL89EVQHgQ==",
+        "resolved": "16.11.0",
+        "contentHash": "ZBKk+0W/fstpsYg7j1nNvqUQ4vjl4xetKwRf7/CCp956lckEOKuCpNO9yj0yO/UlmUaNGU+8csF+oYWIdOZGPw==",
         "dependencies": {
           "System.Security.Permissions": "4.7.0"
         }
@@ -933,7 +933,7 @@
         "dependencies": {
           "AWSSDK.CloudFormation": "3.7.4.7",
           "AWSSDK.S3": "3.7.1.24",
-          "Microsoft.Build.Framework": "16.10.0",
+          "Microsoft.Build.Framework": "16.11.0",
           "Microsoft.Build.Utilities.Core": "16.10.0",
           "System.Runtime.Loader": "4.3.0",
           "YamlDotNet": "11.2.1"
