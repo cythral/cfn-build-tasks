@@ -31,11 +31,11 @@
       },
       "Microsoft.Build.Utilities.Core": {
         "type": "Direct",
-        "requested": "[16.10.0, )",
-        "resolved": "16.10.0",
-        "contentHash": "R8eATgdaGCfdepd67LMe1qhJz6iQOTuI9gVoOqXrHwhc77sBDqG0XD9zKvrgOqfS6NJ03KKTAhbbXnLgD5fKCA==",
+        "requested": "[16.11.0, )",
+        "resolved": "16.11.0",
+        "contentHash": "qJ02OPuYuCkcJRm3AeUV3GT6vQ1yGg4ChKi6wc+X7bSJqu6yuTxwVn7kSPx/4uD/kPyhJkzOPRi1ez5SLdXFeQ==",
         "dependencies": {
-          "Microsoft.Build.Framework": "16.10.0",
+          "Microsoft.Build.Framework": "16.11.0",
           "Microsoft.NET.StringTools": "1.0.0",
           "Microsoft.Win32.Registry": "4.3.0",
           "System.Collections.Immutable": "5.0.0",
