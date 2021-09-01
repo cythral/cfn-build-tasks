@@ -4,20 +4,20 @@
     ".NETCoreApp,Version=v5.0": {
       "AWSSDK.CloudFormation": {
         "type": "Direct",
-        "requested": "[3.7.5.1, )",
-        "resolved": "3.7.5.1",
-        "contentHash": "r/CBYGkPRtteYTVgUqsUSQHlsTk/ljQkZR9vSmy4nQANwGIzKz1RQr4AzMahM1JGy+lEcpjHzO1v7Jatb0p4Ug==",
+        "requested": "[3.7.5.2, )",
+        "resolved": "3.7.5.2",
+        "contentHash": "BL4h92C2ejxHSIxyls4GTLrwVz2vKMff7nQXeA9OjkJ0yjFNzTVoLkBQwu23L46wYYP7uuJskYlLp1+xQ8++9Q==",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.2.9, 4.0.0)"
+          "AWSSDK.Core": "[3.7.2.10, 4.0.0)"
         }
       },
       "AWSSDK.S3": {
         "type": "Direct",
-        "requested": "[3.7.1.29, )",
-        "resolved": "3.7.1.29",
-        "contentHash": "lHZPfpID2vNXc/zAo/8TSD/i1w67X2EvLSl+xUy/Kjz8GkYy47XNP9JfWgjozhQP2bAY/2lGmYlovLm559nGoA==",
+        "requested": "[3.7.1.30, )",
+        "resolved": "3.7.1.30",
+        "contentHash": "D2O+/IMDwgA9fsaCJvA0wYOKKblpqO29N4tfqq2mlBxEza6utyCq6EYJBTNqNs0TsnteMf+sw5E1QzeTPNEljQ==",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.2.9, 4.0.0)"
+          "AWSSDK.Core": "[3.7.2.10, 4.0.0)"
         }
       },
       "Microsoft.Build.Framework": {
@@ -79,8 +79,8 @@
       },
       "AWSSDK.Core": {
         "type": "Transitive",
-        "resolved": "3.7.2.9",
-        "contentHash": "l7BfHoINS09/s0dgdH6pLN9MQhIMRx91N1EIpdsliENtG/3mEXXPqibz35UU9NUDHx/F3WXbB9UAkJ2dNdCGfA=="
+        "resolved": "3.7.2.10",
+        "contentHash": "LHrbrTrWFZo0iyqIFbjruPmXkBEvJPstLcqlB2nqD8TpjMaCye1nng0rf2bodU8+MA9NwyhUcT1o/MXUpwlKPA=="
       },
       "Microsoft.Build.Tasks.Git": {
         "type": "Transitive",
