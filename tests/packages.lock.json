@@ -152,10 +152,10 @@
       },
       "Microsoft.Build.Utilities.Core": {
         "type": "Transitive",
-        "resolved": "16.11.0",
-        "contentHash": "qJ02OPuYuCkcJRm3AeUV3GT6vQ1yGg4ChKi6wc+X7bSJqu6yuTxwVn7kSPx/4uD/kPyhJkzOPRi1ez5SLdXFeQ==",
+        "resolved": "17.0.0",
+        "contentHash": "+eqDvecetKfsZR9WqLQ96F9xhxFb3m9VOjkyzuaA/2D1cub1aW9XyegZb8+gEpBa+o7dHnIN9FskC+tRXtqLSQ==",
         "dependencies": {
-          "Microsoft.Build.Framework": "16.11.0",
+          "Microsoft.Build.Framework": "17.0.0",
           "Microsoft.NET.StringTools": "1.0.0",
           "Microsoft.Win32.Registry": "4.3.0",
           "System.Collections.Immutable": "5.0.0",
@@ -934,7 +934,7 @@
           "AWSSDK.CloudFormation": "3.7.5.38",
           "AWSSDK.S3": "3.7.4.1",
           "Microsoft.Build.Framework": "17.0.0",
-          "Microsoft.Build.Utilities.Core": "16.11.0",
+          "Microsoft.Build.Utilities.Core": "17.0.0",
           "System.Runtime.Loader": "4.3.0",
           "YamlDotNet": "11.2.1"
         }
