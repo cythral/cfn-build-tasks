@@ -93,8 +93,8 @@
       },
       "AWSSDK.CloudFormation": {
         "type": "Transitive",
-        "resolved": "3.7.5.46",
-        "contentHash": "csoRSThephezgjQFRd5WcnqCuG4jFZ3mxc5iyB+Vfx0VCJIZIveqhO3t4aDinPL+vPx9r8HdUWs9eK+gvtyAcA==",
+        "resolved": "3.7.6",
+        "contentHash": "t7W6EbDGrSx3Q708AfxfWC2zRjop6xZeIlwwrjHVWRcPIebr+z6zQdJlRAYZ4KjtI7MrUBgYTBOlA3CEo9eEMw==",
         "dependencies": {
           "AWSSDK.Core": "[3.7.5, 4.0.0)"
         }
@@ -931,7 +931,7 @@
       "Cythral.CloudFormation.BuildTasks": {
         "type": "Project",
         "dependencies": {
-          "AWSSDK.CloudFormation": "3.7.5.46",
+          "AWSSDK.CloudFormation": "3.7.6",
           "AWSSDK.S3": "3.7.4.9",
           "Microsoft.Build.Framework": "17.0.0",
           "Microsoft.Build.Utilities.Core": "17.0.0",
