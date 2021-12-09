@@ -77,7 +77,11 @@ namespace Cythral.CloudFormation.BuildTasks
                 }
                 else
                 {
-                    propsNode.Children[prop.Name] = new YamlScalarNode($"s3://{bucketName}/{filename}");
+                    var url = resourceDefinition.UseHttpsUrl
+                        ? $"https://{bucketName}.s3.amazonaws.com/{filename}"
+                        : $"s3://{bucketName}/{filename}";
+
+                    propsNode.Children[prop.Name] = new YamlScalarNode(url);
                 }
             }
 

@@ -12,6 +12,8 @@ namespace Cythral.CloudFormation.BuildTasks
 
         public bool ForceZip { get; set; }
 
+        public bool UseHttpsUrl { get; set; }
+
         public string? BucketNameProperty { get; set; }
 
         public string? ObjectKeyProperty { get; set; }
@@ -27,7 +29,7 @@ namespace Cythral.CloudFormation.BuildTasks
 
             [("AWS::CloudFormation::Stack", "TemplateURL")] = new PackableResource
             {
-
+                UseHttpsUrl = true,
             },
 
             [("AWS::Serverless::Api", "DefinitionUri")] = new PackableResource
