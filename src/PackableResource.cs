@@ -25,6 +25,11 @@ namespace Cythral.CloudFormation.BuildTasks
                 ForceZip = true,
             },
 
+            [("AWS::CloudFormation::Stack", "TemplateURL")] = new PackableResource
+            {
+
+            },
+
             [("AWS::Serverless::Api", "DefinitionUri")] = new PackableResource
             {
 
