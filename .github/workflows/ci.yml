@@ -44,7 +44,7 @@ jobs:
           if [ "$lastTaggedVersion" = "v$VERSION" ] && [ "$lastTaggedVersionSha" != "${{ github.sha }}" ]; then exit 1; fi
 
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
 
       - name: Display .NET Info
         run: dotnet --info
@@ -114,7 +114,7 @@ jobs:
         run: echo "VERSION=$(cat version.json | jq -r '.version')" >> $GITHUB_ENV
 
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
 
       - name: Display .NET Info
         run: dotnet --info
